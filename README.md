@@ -6,9 +6,9 @@ been laid off and cover applicable overhead through Small Business Association(S
 As a result, PPP enables small businesses continuity, fewer jobs lost and more small business staying afloat while contributing to 
 overall economic recovery.
 
-Considering there is limited and preliminary data on the impact and effectiveness of PPP as a policy, this analysis focuses on 
-private loans' distribution among small businesses in New York City covering the 5 boroughs that make up NYC. The objective of this 
-repository and analysis is to quantify PPP loans distribution among Small Businesses in New York City.  
+Considering there is limited preliminary data on the impact and effectiveness of PPP as a policy, this analysis focuses on 
+private loans' distribution among small businesses in New York City covering the 5 boroughs that make up NYC. The objective 
+of this repository and analysis is to quantify PPP loans distribution among Small Businesses in New York City.  
 
 **Inputs**
 1. The "ppp_loans_state_NY.csv" csv file contains all the data for the loans distribution analysis among small businesses analysis, 
