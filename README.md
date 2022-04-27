@@ -12,15 +12,15 @@ Deliverables
 1. The output "cleaned_ppp_data.csv"  filters the data with the interest variables and narrows it down to the 5 boroughs that make up New York City 
 2. Several graphs:
 
-  2.1 Boroughs vs loan amount shows the total loans distribution by borough
+    2.1 Boroughs vs loan amount shows the total loans distribution by borough
   
-  2.2 Top 10 industries vs loan amount showcases which were the top 10 industries with the numbers of small businesses receiving loans
+    2.2 Top 10 industries vs loan amount showcases which were the top 10 industries with the numbers of small businesses receiving loans
   
-  2.3 Top 10 lenders vs loan amount displays the top lenders providing loans for small businesses
+    2.3 Top 10 lenders vs loan amount displays the top lenders providing loans for small businesses
   
-  2.4 Jobs reported by borough shows the number of jobs reported that were covered by PPP loans for payroll
+    2.4 Jobs reported by borough shows the number of jobs reported that were covered by PPP loans for payroll
   
-  2.5 PPP loans in New York State by zipcode lays out loans distribution by zip code
+    2.5 PPP loans in New York State by zipcode lays out loans distribution by zip code
   
 3. PPP.pptx is the power point presentation 
 
