@@ -22,22 +22,24 @@ ppp['industry'].value_counts()
 
 #. Grouping loan_amount by industry and taking only the top 10 industries with loan amount 
 #summing the total by industry and printing the outcome.
-top_5_industries = ppp['loan_amount'].groupby(ppp['industry']).sum()[:10].sort_values(ascending=False).astype(int)
-top_5_industries
-print(top_5_industries.sum())
+top_10_industries = ppp['loan_amount'].groupby(ppp['industry']).sum()[:10].sort_values(ascending=False).astype(int)
+top_10_industries
+print(top_10_industries.sum())
 
 # Creating the labels and graph setup for top_10 industries.
-labels = ['Health Care and Social Assistance', 'Educational Services', 
-          'Construction', 'Administrative Services', 
-          'Agriculture, Forestry, Fishing and Hunting']
+labels = ['Health Care and Social Assistance','Construction',
+          'Educational Services', 'Accommodation and Food Services',
+          'Administrative Services', 'Arts and Recreation',
+          'Information', 'Finance and Insurance',
+          'Agriculture, Forestry, Fishing and Hunting', 'Management of Companies and Enterprise']
 
 # Using `hole` to create a donut-like pie chart
-fig = go.Figure(data=[go.Pie(labels=labels, values=top_5_industries, hole=.4)])
+fig = go.Figure(data=[go.Pie(labels=labels, values=top_10_industries, hole=.4)])
 
 fig.update_layout(
-    title_text="Top 5 Industries vs Loan Amount",
+    title_text="Top 10 Industries vs Loan Amount",
     # Adding annotations in the center of the donut pies.
-    annotations=[dict(text='$2,235,195,484', x=0.50, y=0.5, font_size=15, showarrow=False)],
+    annotations=[dict(text='$2,770,068,025', x=0.50, y=0.5, font_size=15, showarrow=False)],
     autosize=False,
         width=900,
         height=900,)
@@ -45,30 +47,32 @@ fig.show()
 plot(fig, auto_open=True)
 
 #%%4.Creating the graph for top_15 lenders, printing it anf then graphing the output.
-top_15_lenders = ppp['loan_amount'].groupby(ppp['lender']).sum()[:15].sort_values(ascending=False).astype(int)
-top_15_lenders
-print(top_15_lenders.sum())
+top_10_lenders = ppp.groupby('lender')['loan_amount'].sum()
+top_10_lenders = top_10_lenders.sort_values(ascending=False)[:10].astype(int)
+top_10_lenders
 
 # Creating the labels for the top 15 lenders to then graph the output.
-lenders = ['JP Morgan Chase', 'Alma Bank', 'Amboy Bank ', 'Accion',           
-           'Alpine Capital Bank ', '1st Constitution Bank ', 'Allegiance Bank',           
-           'Abacus Federal Savings Bank ', 'Affinity FCU ', 'Access Bank',           
-           'Accion East, Inc.', '1st Choice CU ', 'Adams Community Bank',           
-           'Academy Bank, National Association ', 'Allied First Bank ']
+lenders = ['JPMorgan Chase Bank, National Association ', 'Signature Bank ', \
+           'TD Bank, National Association', 'Cross River Bank', 'Bank of America, National Association', \
+          'Citibank, N.A. ', 'Northfield Bank', 'Valley National Bank',  \
+          'Manufacturers and Traders Trust Company', 'Kabbage, Inc.', 'HSBC Bank USA, National Association', \
+          'Harvest Small Business Finance, LLC', 'The Bank of Princeton', 'Santander Bank, National Association ', \
+          'Dime Community Bank']
 
-fig = go.Figure(data=[go.Pie(labels=lenders, values=top_15_lenders, textinfo='label+percent', hole=.4)])
+fig = go.Figure(data=[go.Pie(labels=lenders, values=top_10_lenders, textinfo='label+percent', hole=.4)])
 
 fig.update_layout(
-    title_text="Top 15 Lenders vs Loan Amount",
-    # Adding annotations in the center of the donut pies.
-    annotations=[dict(text='$7,804,574', x=0.50, y=0.5, font_size=15, showarrow=False)],
+    title_text="Top 10 Lenders vs Loan Amount",
+    # Add annotations in the center of the donut pies.
+    annotations=[dict(text='$3,800,799,121', x=0.50, y=0.5, font_size=15, showarrow=False)],
     autosize=False,
         width=900,
-        height=900,) 
+        height=900,)
+                 
 fig.show()
 plot(fig, auto_open=True)
 
-#%%5. Creating the graph for jobs reported by SB by borough and printing it
+#%%5. Creating the graph for jobs reported by SBA by borough and printing it
 boroughs = ppp['loan_amount'].groupby(ppp['borough']).sum().sort_values(ascending=False)
 print(boroughs.sum())
 
@@ -76,17 +80,18 @@ borough_labels = ['BROOKLYN', 'BRONX', 'STATEN ISLAND', 'QUEENS', 'MANHATTAN']
 fig = go.Figure(data=[go.Pie(labels=borough_labels, values=boroughs, textinfo='label+percent', hole=.4)])
 
 fig.update_layout(
-    title_text="Top Boroughs vs Loan Amount",
+    title_text="NYC Boroughs vs Loan Amount",
     # Adding annotations in the center of the donut pies.
-    annotations=[dict(text='$3,800,799,121', x=0.50, y=0.5, font_size=15, showarrow=False)],
+    annotations=[dict(text='$4,754,806,357', x=0.50, y=0.5, font_size=15, showarrow=False)],
     autosize=False,
         width=700,
         height=700,)
 plot(fig, auto_open=True)
 
-# Checking the total number of jobs reported in each city
+#%%6. Checking the total number of jobs reported in each city and graphing it.
 jobs_reported_by_borough = ppp.groupby('borough')['jobs_reported'].sum()
 jobs_reported_by_borough
+print(jobs_reported_by_borough.sum())
 
 ax = jobs_reported_by_borough.plot(kind='bar', title='Total Jobs reported in each Borough', xlabel='Borough',
                ylabel='Jobs reported', figsize=(15, 8));
@@ -97,19 +102,18 @@ for p in ax.patches:
 #Rotating x-axis ticks vertically
 plt.xticks(rotation=0);
 
-#%%6.Checking and graphingh the number of lenders in each borough
+#%%7.Checking and graphing the number of lenders in each borough
 borough_vs_lender = ppp.groupby('borough')['lender'].count().sort_values(ascending=False)
 borough_vs_lender
-
 print(ppp['lender'].count())
 
 borough_labels = ['BROOKLYN', 'BRONX','STATEN ISLAND', 'QUEENS', 'MANHATTAN']
 fig = go.Figure(data=[go.Pie(labels=borough_labels, values=borough_vs_lender, textinfo='label+percent', hole=.4)])
 
 fig.update_layout(
-    title_text="No. of Lenders in each Borough",
+    title_text="No. of Lenders for each Borough",
     # Adding annotations in the center of the donut pies.
-    annotations=[dict(text='43,421', x=0.50, y=0.5, font_size=15, showarrow=False)],
+    annotations=[dict(text='52,903', x=0.50, y=0.5, font_size=15, showarrow=False)],
     autosize=False,
         width=600,
         height=600,)
