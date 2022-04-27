@@ -6,10 +6,10 @@ The objective of this repository and analysis is to quantify PPP loans distribut
 Inputs
 1. The "ppp_loans_state_NY.csv" csv file contains all the data for the loans distribution analysis among small businesses analysis, 
 generating "cleaned_ppp_nyc_data.csv" as the output
-2. Graph of top industries before PPP, which shows the latest records by the Census of the top industries in NY State.
+2. Graph of top industries before PPP, which shows the latest records by the Census of the top industries in NY State
 
 Deliverables
-1. The output "cleaned_ppp_data.csv"  filters the data with the interest variables and narrows it down to the 5 boroughs that make up New York City, 
+1. The output "cleaned_ppp_data.csv"  filters the data with the interest variables and narrows it down to the 5 boroughs that make up New York City 
 2. Several graphs:
   2.1 Boroughs vs loan amount shows the total loans distribution by borough
   2.2 Top 10 industries vs loan amount showcases which were the top 10 industries with the numbers of small businesses receiving loans
